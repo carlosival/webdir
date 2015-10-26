@@ -1,0 +1,45 @@
+{% extends '::base4.html.twig' %}
+
+{% block body -%}
+
+    <h1>Documento</h1>
+
+    <table class=" table table-bordered ">
+        <tbody>
+           {# <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>#}
+            <tr>
+                <th>Orden</th>
+                <td><a href="{{asset(entity.getWebPath)}}">{{ entity.getNombre }}</a></td>
+            </tr>
+            <tr>
+                <th>Creado el</th>
+                <td>{{ entity.createdat|date('Y-m-d') }}</td>
+            </tr>
+           <tr>
+               <th>Creado por </th>
+               <td>{{ entity.createdby}}</td>
+           </tr>
+            <tr>
+                <th>Pertenece a</th>
+                <td>{{ entity.tramite.empresa }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <ul class="record_actions ">
+        <li>
+            <a href="{{ path('documento') }}">
+                Ver Todos
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('documento_edit', { 'id': entity.id }) }}">
+                Editar
+            </a>
+        </li>
+        <li>{{ form(delete_form) }}</li>
+    </ul>
+
+{% endblock %}

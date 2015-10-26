@@ -1,0 +1,250 @@
+{% extends '::base4.html.twig' %}
+
+
+{% block body %}
+
+    <div id="tabs" class="col-md-12 col-lg-12" >
+        <ul >
+            <li ><a href="#tabs-1" >Enlaces</a></li>
+            <li ><a href="#tabs-2" >Conexiones</a></li>
+            <li ><a href="#tabs-3" >Otras Informaciones</a></li>
+        </ul>
+        <div id="tabs-1" class="col-md-12 col-lg-12">
+            <table id="list" class="col-md-12 col-lg-12">
+                <tr><td></td></tr>
+            </table>
+            <div id="pager"></div>
+        </div>
+        <div id="tabs-2" ></div>
+        <div id="tabs-3" ></div>
+    </div>
+
+{% endblock body %}
+
+{% block stylesheet %}
+{{ parent() }}
+    {#  <!-- BOOTSTRAP CORE STYLE CSS -->
+      <link href="{{ asset('bundles/tramite/assets/css/bootstrap.css') }}" rel="stylesheet" />
+      <!-- CUSTOM STYLE CSS -->
+      <link href="{{ asset('bundles/tramite/assets/css/style.css') }}" rel="stylesheet" />
+      &#123;&#35;<!-- GOOGLE FONT -->&#35;&#125;
+      <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />#}
+
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('bundles/tramite/jqgrid-4.6.0/themes/cupertino/jquery-ui.css') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('bundles/tramite/jqgrid-4.6.0/ui.jqgrid.css') }}" />
+
+{%  endblock  stylesheet %}
+
+{% block javascript %}
+
+{{ parent() }}
+
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+
+
+
+
+
+
+    <script type="text/javascript" src="{{ asset('bundles/tramite/jqgrid-4.6.0/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('bundles/tramite/jqgrid-4.6.0/grid.locale-es.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/tramite/jqgrid-4.6.0/jquery.jqGrid.min.js') }}" type="text/javascript"></script>
+
+    {#<!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
+    <!-- CORE JQUERY  -->
+    <script src="{{ asset('bundles/tramite/js/jquery-2.1.1.min.js') }}"></script>
+    <!-- BOOTSTRAP SCRIPTS  -->
+    <script src="{{ asset('assets/plugins/bootstrap.js') }}"></script>
+    <!-- APPLICATION SCRIPTS  -->#}
+    <script src="{{ asset('bundles/tramite/js/app.js') }}"></script>
+
+
+
+    <script type="text/javascript">
+        $(function () {
+            $( "#tabs" ).tabs();
+            datepickeroptiones={
+                format:'yy-mm-dd',
+                date: $('#date').val(),
+                current: $('#date').val(),
+                starts: 1,
+                position: 'bottom',
+                onBeforeShow: function(){
+                    $('#date').DatePickerSetDate($('#date').val(), true);
+                },
+                onChange: function(formated, dates){
+                    $('#date').val(formated);
+                }
+            },
+
+            $("#list").jqGrid({
+                url: "{{ path('solicitudes') }}",
+                datatype: "json",
+                mtype: "POST",
+                colNames: ["No","Empresa","Solicitud","Solicitud a Etecsa","Ejecucion","Estado Habana","Descripcion Habana","Estado Provincia","Descripcion Provincia","Provincia","Observaciones"],
+                colModel: [
+                    { name: "id",index:'id' },
+                    { name: "empresa",index:'empresa'{% if is_granted('ROLE_HABANA')%},editable:true{% endif %} },
+                    { name: "solicitud",index:'solicitud'{% if is_granted('ROLE_HABANA')%},editable:true{% endif %} },
+                    { name: "solicitud_etecsa" ,index:'solicitud_etecsa'{% if is_granted('ROLE_HABANA')%},editable:true{% endif %} },
+                    { name: "fecha_ejecucion" ,index:'fecha_ejecucion'{% if is_granted('ROLE_HABANA')%},editable:true{% endif %} },
+                    { name: "estado_hab",index:'estado_hab'{% if is_granted('ROLE_HABANA')%},editable:true{% endif %} },
+                    { name: "desc_hab",index:'desc_hab'{% if is_granted('ROLE_HABANA')%},editable:true{% endif %} },
+                    { name: "estado_prov",index:'estado_prov',editable:true, frozen : true},
+                    { name: "desc_prov",index:'desc_prov',editable:true, edittype:'textarea', formatter:'textarea'},
+//                  { name: "orden",index:'orden',editable:true, edittype: 'file',editoptions: {enctype: "multipart/form-data"}},
+                    { name: "provincia",index:'provincia', frozen : true{% if is_granted('ROLE_HABANA')%},editable:true{% endif %} ,edittype:"select",editoptions:{
+                        value:"Pinar:Pinar del Río;Habana:La Habana;Villa Clara:Villa Clara;Camaguey:Camaguey;Granma:Granma;Santiago:Santiago"
+
+                    }},
+                    { name: "observaciones",index:'observaciones', frozen : true{% if is_granted('ROLE_HABANA')%},editable:true{% endif %} , edittype:'textarea'}
+                ],
+                pager: "#pager",
+                rowNum: 200,
+                rownumbers: true,
+                height: 'auto',
+                sortorder: "desc",
+                sortname: 'id',
+                caption: "Solicitudes de Enlaces"
+            });
+
+
+            //Para ponerle cabeceras compartidas a las tablas.
+
+            jQuery("#list").jqGrid('setGroupHeaders',
+              { useColSpanStyle: false,
+                groupHeaders:[ {startColumnName: 'estado_hab', numberOfColumns: 2, titleText: 'Comercial Habana' }, {startColumnName: 'estado_prov', numberOfColumns: 2, titleText: 'Comercial Provincia '} ]
+              });
+
+            // Para hacer el boton insertar doc del grid.
+
+var menuedit={
+           add:false,
+           edit:false,
+           del:false
+};
+            menuedit={% if is_granted('ROLE_HABANA') %}{add:true,edit:true,del:true};{% elseif is_granted('ROLE_PROVINCIA') %}{add:false,edit:true,del:false};{% endif %}
+
+            // Para hacer el grid navegable.
+            jQuery("#list").jqGrid(
+                    'navGrid',
+                    '#pager',
+                     menuedit,
+
+
+                    // optiones generales del navegable (en dependencia)
+                    {
+
+                        url:"{{path('editar')}}",
+                        width: 500,
+                        closeAfterEdit: true,
+
+                        onInitializeForm: function() {
+                            $('#solicitud').datepicker(datepickeroptiones);
+                            $('#solicitud_etecsa').datepicker(datepickeroptiones);
+                            $('#fecha_ejecucion').datepicker(datepickeroptiones);
+
+                        },
+                        onClose: function() {
+                            //if you close dialog when the datepicker is shown
+                            $('#solicitud').datepicker("hide")
+                            $('#solicitud_etecsa').datepicker("hide")
+                            $('#solicitud_etecsa').datepicker("hide")
+                        },
+
+
+
+                        afterSubmit: function(r, d) {
+                            console.log(r)
+                            console.log(d);
+
+                          //  jQuery("#list").trigger("reloadGrid");
+                            return [true,r.responseText=="", r.responseText];
+
+                        }
+
+                    },// edit options
+                    {
+
+                        url:"{{path('adicionar')}}",
+                        width: 500,
+                        closeAfterAdd: true,
+
+                        afterShowForm: function() {
+                            $('#solicitud').datepicker(datepickeroptiones);
+                            $('#solicitud_etecsa').datepicker(datepickeroptiones);
+                            $('#fecha_ejecucion').datepicker(datepickeroptiones);
+
+                        },
+                        onclickSubmit: function() {
+                            //if you close dialog when the datepicker is shown
+                            $('#solicitud').datepicker("hide")
+                            $('#solicitud_etecsa').datepicker("hide")
+                            $('#solicitud_etecsa').datepicker("hide")
+                        },
+
+
+
+                        afterSubmit: function(r, d) {
+                            console.log(r)
+                            console.log(d);
+                        //    jQuery("#list").trigger("reloadGrid");
+                            return [true,r.responseText=="", r.responseText];
+
+                        }
+
+                    },// add options
+                    {
+
+                        url:"{{path('eliminar')}}",
+                        width: 500,
+
+                        afterSubmit: function(r, d) {
+                            console.log(r)
+                            console.log(d);
+                         //   jQuery("#list").trigger("reloadGrid");
+                            return [true ,r.responseText=="", r.responseText];
+
+                        }
+
+                    }, // del options
+                    {} // search options
+            ).setGridWidth($('#tabs-1').width(), false);
+
+
+
+           /* .jqGrid('navButtonAdd','#pager',{caption:"", buttonicon :'ui-icon-document',
+                        onClickButton:function(){
+
+                            var grid = $("#list");
+                            var rowid = grid.jqGrid('getGridParam', 'selrow');
+                            if(rowid){
+                                $( "#dialog-upload" ).dialog({
+                                    autoOpen: true
+                                });
+
+                           // alert('Subir el documento de:'+ rowid);
+                            }else{
+                            alert('Seleccione una fila')
+                            }
+                        }});*/
+
+
+
+
+        });
+
+
+ /// Funcion que se usa para reload de grid
+        // reload table after submit. Put it somewhere in your JS file
+        function reload(rowid, result) {
+            $('#list').trigger("reloadGrid");
+        }
+
+
+
+    </script>
+
+{% endblock javascript %}

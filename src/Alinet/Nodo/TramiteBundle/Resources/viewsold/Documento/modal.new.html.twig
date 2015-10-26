@@ -1,0 +1,22 @@
+
+{#codigo de los dialogos#}
+<div id="dialog-upload">
+    <input id="fileupload" type="file" name="files[]" data-url="server/php/" multiple>
+</div>
+<div id="dialog-form-login" title="Auntenticacion">
+    <div id="users-contain" class="ui-widget">
+        <p class="validateTips">All form fields are required.</p>
+
+        <form id="myform" action="{{ path('check') }}" method="post">
+            <fieldset>
+                <label for="name">Nombre de Usuario</label>
+                <input type="text" placeholder="Usuario" id="_username" name="_username"  class="text ui-widget-content ui-corner-all">
+                <label for="password">Contraseña</label>
+                <input type="password"  id="_password" name="_password" placeholder="Contrase&ntilde;a" class="text ui-widget-content ui-corner-all">
+                <!-- Allow form submission with keyboard without duplicating the dialog button -->
+                <br/>
+                <input type="submit" value="enviar" >
+            </fieldset>
+        </form>
+    </div>
+</div>

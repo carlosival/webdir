@@ -1,0 +1,57 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Tramite list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fechasolnodo</th>
+                <th>Fechasoletecsa</th>
+                <th>Descripcion</th>
+                <th>Estado</th>
+                <th>Estadoueb</th>
+                <th>Descripcionueb</th>
+                <th>Provincia</th>
+                <th>Fechaejec</th>
+                <th>Observaciones</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('tramite_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{% if entity.fechaSolNodo %}{{ entity.fechaSolNodo|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.fechaSolEtecsa %}{{ entity.fechaSolEtecsa|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.descripcion }}</td>
+                <td>{{ entity.estado }}</td>
+                <td>{{ entity.estadoUeb }}</td>
+                <td>{{ entity.descripcionUeb }}</td>
+                <td>{{ entity.provincia }}</td>
+                <td>{% if entity.fechaEjec %}{{ entity.fechaEjec|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.observaciones }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('tramite_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('tramite_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('tramite_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

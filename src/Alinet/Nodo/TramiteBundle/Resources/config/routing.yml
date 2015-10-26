@@ -1,0 +1,47 @@
+tramite_homepage:
+    pattern:  /
+    defaults: { _controller: TramiteBundle:Empresa:index }
+
+upload:
+    pattern:  /upload/{id}
+    defaults: { _controller: TramiteBundle:Default:upload }
+
+inicio:
+    pattern:  /inicio
+    defaults: { _controller: TramiteBundle:Default:inicio }
+
+tabla:
+    pattern:  /tabla
+    defaults: { _controller: TramiteBundle:Default:tabla }
+
+TramiteBundle_documento:
+        resource: "@TramiteBundle/Resources/config/routing/documento.yml"
+        prefix:   /documento
+
+TramiteBundle_tramite:
+        resource: "@TramiteBundle/Resources/config/routing/tramite.yml"
+        prefix:   /tramite
+
+index:
+    pattern: /index
+    defaults: { _controller: TramiteBundle:Default:login }
+#    requirements:
+#          _scheme: https
+check:
+    pattern: /check
+
+logout:
+    pattern: /logout
+
+TramiteBundle_usuario:
+            resource: "@TramiteBundle/Resources/config/routing/usuario.yml"
+            prefix:   /usuario
+TramiteBundle_anchobanda:
+        resource: "@TramiteBundle/Resources/config/routing/anchobanda.yml"
+        prefix:   /anchobanda
+TramiteBundle_traslados:
+        resource: "@TramiteBundle/Resources/config/routing/traslados.yml"
+        prefix:   /traslados
+TramiteBundle_empresa:
+        resource: "@TramiteBundle/Resources/config/routing/empresa.yml"
+        prefix:   /empresa

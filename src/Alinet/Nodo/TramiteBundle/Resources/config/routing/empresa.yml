@@ -1,0 +1,46 @@
+empresa:
+    pattern:  /
+    defaults: { _controller: "TramiteBundle:Empresa:index" }
+
+empresa_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "TramiteBundle:Empresa:show" }
+
+empresa_new:
+    pattern:  /new
+    defaults: { _controller: "TramiteBundle:Empresa:new" }
+
+empresa_create:
+    pattern:  /create
+    defaults: { _controller: "TramiteBundle:Empresa:create" }
+    requirements: { _method: post }
+
+empresa_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "TramiteBundle:Empresa:edit" }
+
+empresa_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "TramiteBundle:Empresa:update" }
+    requirements: { _method: post|put }
+
+empresa_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "TramiteBundle:Empresa:delete" }
+    requirements: { _method: post|delete }
+
+cambiar_factura:
+    pattern:  /{id}/cambiarfactura
+    defaults: { _controller: "TramiteBundle:Empresa:cambiarfactura" }
+
+cambiar_cuenta:
+    pattern:  /{id}/cambiarcuenta
+    defaults: { _controller: "TramiteBundle:Empresa:cambiarcuenta" }
+
+notificar_recogida:
+      pattern:  /recogida
+      defaults: { _controller: "TramiteBundle:Empresa:notificacionmasiva" }
+
+empresa_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "TramiteBundle:Empresa:notificacionindividual" }

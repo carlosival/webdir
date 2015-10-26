@@ -1,0 +1,30 @@
+correo:
+    pattern:  /
+    defaults: { _controller: "TramiteBundle:Correo:index" }
+
+correo_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "TramiteBundle:Correo:show" }
+
+correo_new:
+    pattern:  /new
+    defaults: { _controller: "TramiteBundle:Correo:new" }
+
+correo_create:
+    pattern:  /create
+    defaults: { _controller: "TramiteBundle:Correo:create" }
+    requirements: { _method: post }
+
+correo_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "TramiteBundle:Correo:edit" }
+
+correo_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "TramiteBundle:Correo:update" }
+    requirements: { _method: post|put }
+
+correo_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "TramiteBundle:Correo:delete" }
+    requirements: { _method: post|delete }

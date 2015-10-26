@@ -1,0 +1,45 @@
+#traslados:
+#    pattern:  /
+#    defaults: { _controller: "TramiteBundle:Traslados:index" }
+
+traslados_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "TramiteBundle:Traslados:show" }
+
+traslados_new:
+    pattern:  /new
+    defaults: { _controller: "TramiteBundle:Traslados:new" }
+
+traslados_create:
+    pattern:  /create
+    defaults: { _controller: "TramiteBundle:Traslados:create" }
+    requirements: { _method: post }
+
+traslados_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "TramiteBundle:Traslados:edit" }
+
+traslados_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "TramiteBundle:Traslados:update" }
+    requirements: { _method: post|put }
+
+traslados_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "TramiteBundle:Traslados:delete" }
+    requirements: { _method: post|delete }
+# Rutas creadas por mi
+traslados:
+    pattern:  /
+    defaults: { _controller: "TramiteBundle:Traslados:solicitudes" }
+
+traslados_eliminar:
+    pattern:  /eliminar
+    defaults: { _controller: "TramiteBundle:Traslados:eliminar" }
+
+traslados_adicionar:
+    pattern:  /adicionar
+    defaults: { _controller: "TramiteBundle:Traslados:adicionar" }
+traslados_editar:
+    pattern:  /editar
+    defaults: { _controller: "TramiteBundle:Traslados:editar" }

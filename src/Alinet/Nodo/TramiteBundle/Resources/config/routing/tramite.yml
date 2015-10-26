@@ -1,0 +1,64 @@
+tramite:
+    pattern:  /
+    defaults: { _controller: "TramiteBundle:Tramite:index" }
+
+tramite_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "TramiteBundle:Tramite:show" }
+
+tramite_new:
+    pattern:  /new
+    defaults: { _controller: "TramiteBundle:Tramite:new" }
+
+tramite_create:
+    pattern:  /create
+    defaults: { _controller: "TramiteBundle:Tramite:create" }
+    requirements: { _method: post }
+
+tramite_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "TramiteBundle:Tramite:edit" }
+
+tramite_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "TramiteBundle:Tramite:update" }
+    requirements: { _method: post|put }
+
+tramite_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "TramiteBundle:Tramite:delete" }
+    requirements: { _method: post|delete }
+# Rutas creadas por mi
+solicitudes:
+    pattern:  /solicitudes
+    defaults: { _controller: "TramiteBundle:Tramite:solicitudes" }
+
+eliminar:
+    pattern:  /eliminar
+    defaults: { _controller: "TramiteBundle:Tramite:eliminar" }
+
+adicionar:
+    pattern:  /adicionar
+    defaults: { _controller: "TramiteBundle:Tramite:adicionar" }
+editar:
+    pattern:  /editar
+    defaults: { _controller: "TramiteBundle:Tramite:editar" }
+prueba:
+    pattern:  /prueba
+    defaults: { _controller: "TramiteBundle:Tramite:prueba" }
+
+solicitudes_ejecutados:
+    pattern: /solicitudes_ejecutados
+    defaults: { _controller: "TramiteBundle:Tramite:solejecutadas" }
+
+enlaces_ejecutados_editar:
+    pattern:  / enlaces_ejecutados_editar
+    defaults: { _controller: "TramiteBundle:Tramite:solejecutadaseditar" }
+
+enlaces_ejecutados_adicionar:
+        pattern:  / enlaces_ejecutados_adicionar
+        defaults: { _controller: "TramiteBundle:Tramite:solejecutadasadicionar" }
+
+enlaces_ejecutados_eliminar:
+        pattern:  / enlaces_ejecutados_eliminar
+        defaults: { _controller: "TramiteBundle:Tramite:solejecutadaseliminar" }

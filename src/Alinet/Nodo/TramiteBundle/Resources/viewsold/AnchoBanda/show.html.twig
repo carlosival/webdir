@@ -1,0 +1,76 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>AnchoBanda</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Anchobandactual</th>
+                <td>{{ entity.anchoBandActual }}</td>
+            </tr>
+            <tr>
+                <th>Anchobandsol</th>
+                <td>{{ entity.anchoBandSol }}</td>
+            </tr>
+            <tr>
+                <th>Fechasolnodo</th>
+                <td>{{ entity.fechaSolNodo|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Fechasoletecsa</th>
+                <td>{{ entity.fechaSolEtecsa|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ entity.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Empresa</th>
+                <td>{{ entity.empresa }}</td>
+            </tr>
+            <tr>
+                <th>Estado</th>
+                <td>{{ entity.estado }}</td>
+            </tr>
+            <tr>
+                <th>Estadoueb</th>
+                <td>{{ entity.estadoUeb }}</td>
+            </tr>
+            <tr>
+                <th>Descripcionueb</th>
+                <td>{{ entity.descripcionUeb }}</td>
+            </tr>
+            <tr>
+                <th>Provincia</th>
+                <td>{{ entity.provincia }}</td>
+            </tr>
+            <tr>
+                <th>Fechaejec</th>
+                <td>{{ entity.fechaEjec|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Observaciones</th>
+                <td>{{ entity.observaciones }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('anchobanda') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('anchobanda_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends '::base.html.twig' %}
+
+
+{% block stylesheet %}
+    <link href="{{ asset('bundles/tramite/assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+
+   {# <link href="{{ asset('bundles/tramite/kendoui/styles/kendo.common.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('bundles/tramite/kendoui/styles/kendo.default.min.css') }}" rel="stylesheet" type="text/css" />#}
+{% endblock stylesheet %}
+
+
+{% block javascript %}
+<script src="{{ asset('bundles/tramite/assets/plugins/jquery-1.10.2.js') }}" type="text/javascript"></script>
+{#<script src="{{ asset('bundles/tramite/kendoui/js/jquery.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('bundles/tramite/kendoui/js/kendo.web.min.js') }}" type="text/javascript"></script>#}
+
+<script src="{{ asset('bundles/tramite/assets/plugins/bootstrap.js') }}" type="text/javascript"></script>
+{#<script src="{{ asset('bundles/tramite/js/app.js') }}" type="text/javascript"></script>#}
+{% endblock javascript %}
+
+
+{% block body %}
+<div class="table-responsive">
+    <table class="table table-bordered" >
+        {#<caption>A test table with merged cells</caption>#}
+        <theader>
+            <tr>
+                <th rowspan="2">No</th>
+                <th rowspan="2">Entidad</th>
+                <th rowspan="2">Solicitud </th>
+                <th rowspan="2">Solicitud Etecsa</th>
+                <th rowspan="2">Fecha Ejecución</th>
+                <th colspan="2">Comercial Habana</th>
+                <th colspan="2">Comercial Provincia</th>
+                <th rowspan="2">Orden</th>
+                <th rowspan="2">Provincia</th>
+                <th rowspan="2">Observaciones</th>
+            </tr>
+            <tr>
+                <th>Estado</th>
+                <th>Descripcion</th>
+                <th>Estado</th>
+                <th>Descripcion</th>
+            </tr>
+        </theader>
+        <tbody>
+        <tr>
+            <td ></td>
+            <td><input type="search" class="form-control" placeholder="Buscar Entidad o Empresa" /></td>
+            <td>40%</td>
+            <td>40%</td>
+            <td>40%</td>
+            <td>40%</td>
+            <td>40%</td>
+            <td>40%</td>
+            <td>40%</td>
+            <td>40%</td>
+            <td>40%</td>
+            <td>40%</td>
+        </tr>
+        </tbody>
+    </table>
+</div
+        >
+
+
+   {# <table class="table "  border="2px"> <!-- Lo cambiaremos por CSS -->
+        <tr>
+            <td colspan="5" ></td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+
+            <td colspan="2">Comercial Habana</td>
+            <td colspan="2">Comercial Provincia</td>
+            <td colspan="3"> </td>
+            <td></td>
+            <td></td>
+
+        </tr>
+        <tr>
+            <td>No</td>
+            <td>Entidad o Empresa</td>
+            <td>Fecha Solicitud</td>
+            <td>Fecha Solicitud a Etecsa</td>
+            <td>Estado</td>
+            <td>Descripción</td>
+            <td>Estado</td>
+            <td>Descripción</td>
+            <td>Orden</td>
+            <td>Provincia</td>
+            <td>Observaciones</td>
+        </tr>
+
+    </table>#}
+
+
+
+
+
+
+
+{% endblock body %}

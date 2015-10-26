@@ -1,0 +1,15 @@
+parameters:
+#    tramite.example.class: Alinet\Nodo\TramiteBundle\Example
+
+services:
+   instant_mailer:
+           class: %swiftmailer.class%
+           arguments: ["@?swiftmailer.transport.real"]
+
+
+
+#    tramite.example:
+#        class: %tramite.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+

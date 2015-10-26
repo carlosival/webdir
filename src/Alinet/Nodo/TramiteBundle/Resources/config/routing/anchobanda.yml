@@ -1,0 +1,49 @@
+anchobanda:
+    pattern:  /
+    defaults: { _controller: "TramiteBundle:AnchoBanda:index" }
+
+anchobanda_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "TramiteBundle:AnchoBanda:show" }
+
+anchobanda_new:
+    pattern:  /new
+    defaults: { _controller: "TramiteBundle:AnchoBanda:new" }
+
+anchobanda_create:
+    pattern:  /create
+    defaults: { _controller: "TramiteBundle:AnchoBanda:create" }
+    requirements: { _method: post }
+
+anchobanda_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "TramiteBundle:AnchoBanda:edit" }
+
+anchobanda_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "TramiteBundle:AnchoBanda:update" }
+    requirements: { _method: post|put }
+
+anchobanda_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "TramiteBundle:AnchoBanda:delete" }
+    requirements: { _method: post|delete }
+# Rutas creadas por mi
+anchobandas:
+    pattern:  /anchobanda
+    defaults: { _controller: "TramiteBundle:AnchoBanda:solicitudes" }
+
+anchobanda_eliminar:
+    pattern:  /eliminar
+    defaults: { _controller: "TramiteBundle:AnchoBanda:eliminar" }
+
+anchobanda_adicionar:
+    pattern:  /adicionar
+    defaults: { _controller: "TramiteBundle:AnchoBanda:adicionar" }
+anchobanda_editar:
+    pattern:  /editar
+    defaults: { _controller: "TramiteBundle:AnchoBanda:editar" }
+
+anchobandas_ejecutados:
+    pattern:  /anchobandasolicitados
+    defaults: { _controller: "TramiteBundle:AnchoBanda:anchobandasejecutados" }

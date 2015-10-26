@@ -1,0 +1,48 @@
+{% extends '::base4.html.twig' %}
+
+{% block nav %}{% endblock %}
+{% block body %}
+
+    <!--login modal-->
+    <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    {#<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>#}
+                    <h1 class="text-center">Auntenticarse</h1>
+                </div>
+                <div class="modal-body">
+                   {% if error %}
+                    <div class="alert alert-danger">
+                        <button class="close" data-dismiss="alert" type="button">×</button>
+                        <strong>Problemas</strong>
+                        Su usuario o contraseña no son correctos
+                    </div>
+                   {% endif %}
+                    <form method="post" action="{{ path('check') }}" class="form center-block">
+                        <div class="form-group">
+                            <input class="form-control input-lg" placeholder="Usuario" type="text" id="_username" name="_username" value="{% if last_username is defined%}{{last_username}}{%endif%}">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control input-lg"  type="password" id="_password" name="_password" placeholder="Contrase&ntilde;a">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" value="Aceptar" class="btn btn-primary btn-lg btn-block"/>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+
+                    <div class="col-md-12">
+                      <span class="pull-right"><a href="{{ path('tramite_homepage') }}">Solo quiere ver las empresas</a></span>{#<span><a href="#">Need help?</a></span>#}
+                        {#<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock  body%}

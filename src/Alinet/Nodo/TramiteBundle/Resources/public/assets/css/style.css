@@ -1,0 +1,23 @@
+﻿
+/* =============================================================
+   GENERAL STYLES
+ ============================================================ */
+body {
+    font-family: 'Open Sans', sans-serif;
+   
+}
+.pad-top {
+    padding-top:60px;
+}
+.text-center {
+    text-align:center;
+}
+
+/*TO MAKING NAV BAR LINKS WHITE COLORED */
+.navbar-inverse .navbar-nav > li > a {
+color: #FFF;
+}
+
+.navbar-inverse .navbar-brand {
+color: #FFF;
+}

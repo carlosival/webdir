@@ -1,0 +1,15 @@
+
+tramite:
+    resource: "@TramiteBundle/Resources/config/routing.yml"
+    prefix:   /
+
+#fos_js_routing:
+#    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+login:
+    pattern: /tabla
+    defaults: { _controller: TramiteBundle:Default:login }
+    requirements:
+          _scheme: https
+check:
+    pattern: /check

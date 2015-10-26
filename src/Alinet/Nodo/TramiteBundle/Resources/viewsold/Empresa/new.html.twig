@@ -1,0 +1,167 @@
+{% extends '::base4.html.twig' %}
+
+{#{% form_theme form 'TramiteBundle:Form:fields.html.twig' %}#}
+
+{% block body -%}
+    <ul class="record_actions pull-right" style="list-style-type: none">
+        <li>
+            <a href="{{ path('empresa') }}">
+               Ir a la lista de Empresas
+            </a>
+        </li>
+    </ul>
+    <h1>Crear Empresa</h1>
+{#  Area de redereo del formulario  #}
+<div class="crear_empresa">
+ {{ form_start(form, {'role': 'form'}) }}
+    {{ form_errors(form) }}
+    {# render the task's only field: description #}
+    <div class="form-group">
+        {{ form_label(form.nombre_pila) }}
+        {{ form_errors(form.nombre_pila) }}
+        {{ form_widget(form.nombre_pila,{ 'attr': {'class': 'form-control'} }) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.nombre_oficial) }}
+        {{ form_errors(form.nombre_oficial) }}
+        {{ form_widget(form.nombre_oficial,{ 'attr': {'class': 'form-control'} }) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.direccion) }}
+        {{ form_errors(form.direccion) }}
+        {{ form_widget(form.direccion,{ 'attr': {'class': 'form-control'} }) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.cuentabancaria) }}
+        {{ form_errors(form.cuentabancaria) }}
+        {{ form_widget(form.cuentabancaria,{ 'attr': {'class': 'form-control'} }) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.estadocuentas) }}
+        {{ form_errors(form.estadocuentas) }}
+        {{ form_widget(form.estadocuentas,{ 'attr': {'class': 'form-control'} }) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.estadofacturas) }}
+        {{ form_errors(form.estadofacturas) }}
+        {{ form_widget(form.estadofacturas,{ 'attr': {'class': 'form-control'} }) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.codigo) }}
+        {{ form_errors(form.codigo) }}
+        {{ form_widget(form.codigo,{ 'attr': {'class': 'form-control'} }) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.correos) }}
+        {{ form_errors(form.correos) }}
+
+        <ul class="correos" data-prototype="{{ form_widget(form.correos.vars.prototype)|e }}">
+            {% for correo in form.correos %}
+                <li>
+
+                    {{ form_errors(correo.correo) }}
+                    {{ form_label(correo.correo) }}
+                    {{ form_widget(correo.correo,{ 'attr': {'type':'email','placeholder':'example@alinet.cu'} }) }}
+
+                    {{ form_errors(correo.duenno) }}
+                    {{ form_label(correo.duenno) }}
+                    {{ form_widget(correo.duenno,{ 'attr': {'placeholder':'departamento o dueño del correo'} }) }}
+
+
+
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.telefonos) }}
+        {{ form_errors(form.telefonos) }}
+
+        <ul class="telefonos" data-prototype="{{ form_widget(form.telefonos.vars.prototype)|e }}">
+            {% for telefono in form.telefonos %}
+                <li>
+
+
+                    {{ form_errors(telefono.telefono) }}
+                    {{ form_label(telefono.telefono) }}
+                    {{ form_widget(telefono.telefono) }}
+
+                    {{ form_errors(telefono.duenno) }}
+                    {{ form_label(telefono.duenno) }}
+                    {{ form_widget(telefono.duenno,{'attr': {'placeholder':'departamento o dueño del telefono'} }) }}
+
+
+
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.responsables) }}
+        {{ form_errors(form.responsables) }}
+
+        <ul class="responsables" data-prototype="{{ form_widget(form.responsables.vars.prototype)|e }}">
+            {% for responsable in form.responsables %}
+                <li >
+
+
+                    {{ form_errors(responsable.nombre) }}
+                    {{ form_label(responsable.nombre) }}
+                    {{ form_widget(responsable.nombre) }}
+
+                    {{ form_errors(responsable.ci) }}
+                    {{ form_label(responsable.ci) }}
+                    {{ form_widget(responsable.ci,{'attr': {'placeholder':'cargo que ocupa'} }) }}
+
+
+                    {{ form_errors(responsable.cargo) }}
+                    {{ form_label(responsable.cargo) }}
+                    {{ form_widget(responsable.cargo,{'attr': {'placeholder':'cargo que ocupa'} }) }}
+
+
+                    {{ form_errors(responsable.nocontrato) }}
+                    {{ form_label(responsable.nocontrato) }}
+                    {{ form_widget(responsable.nocontrato,{'attr': {'placeholder':'cargo que ocupa'} }) }}
+
+                    {{ form_errors(responsable.fechainicio) }}
+                    {{ form_label(responsable.fechainicio) }}
+                    {{ form_widget(responsable.fechainicio) }}
+
+                    {{ form_errors(responsable.fechavencimiento) }}
+                    {{ form_label(responsable.fechavencimiento) }}
+                    {{ form_widget(responsable.fechavencimiento) }}
+
+                    {{ form_errors(responsable.tiporesponsable) }}
+                    {{ form_label(responsable.tiporesponsable) }}
+                    {{ form_widget(responsable.tiporesponsable,{'attr': {'placeholder':'cargo que ocupa'} }) }}
+
+
+
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+
+
+    {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-default','label': 'Aceptar','value':'Crear'} }) }}
+
+    {{ form_end(form) }}
+
+</div>
+
+{#  Area de redereo del formulario  #}
+
+{% endblock %}

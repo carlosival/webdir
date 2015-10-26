@@ -1,0 +1,30 @@
+responsable:
+    pattern:  /
+    defaults: { _controller: "TramiteBundle:Responsables:index" }
+
+responsable_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "TramiteBundle:Responsables:show" }
+
+responsable_new:
+    pattern:  /new
+    defaults: { _controller: "TramiteBundle:Responsables:new" }
+
+responsable_create:
+    pattern:  /create
+    defaults: { _controller: "TramiteBundle:Responsables:create" }
+    requirements: { _method: post }
+
+responsable_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "TramiteBundle:Responsables:edit" }
+
+responsable_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "TramiteBundle:Responsables:update" }
+    requirements: { _method: post|put }
+
+responsable_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "TramiteBundle:Responsables:delete" }
+    requirements: { _method: post|delete }

@@ -1,0 +1,62 @@
+security:
+    encoders:
+       Alinet\Nodo\TramiteBundle\Entity\Usuario: plaintext
+
+    role_hierarchy:
+       ROLE_PINAR: ROLE_PROVINCIA
+       ROLE_VILLA_CLARA: ROLE_PROVINCIA
+       ROLE_CAMAGUEY: ROLE_PROVINCIA
+       ROLE_GRANMA: ROLE_PROVINCIA
+       ROLE_SANTIAGO: ROLE_PROVINCIA
+
+
+
+
+
+    providers:
+                main:
+                    entity:
+                        class: Alinet\Nodo\TramiteBundle\Entity\Usuario
+                        property: nombre
+
+
+    firewalls:
+        main_secured_area:
+            pattern:    ^/
+            anonymous: ~
+            form_login:
+                   check_path: /check
+                   login_path: /index
+                   always_use_default_target_path: true
+                   default_target_path: /empresa
+            logout:
+                path:   /logout
+                target: /index
+
+
+#        dev:
+#            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+#            security: false
+#
+#        login:
+#            pattern:  ^/demo/secured/login$
+#            security: false
+#
+#        secured_area:
+#            pattern:    ^/demo/secured/
+#            form_login:
+#                check_path: _security_check
+#                login_path: _demo_login
+#            logout:
+#                path:   _demo_logout
+#                target: _demo
+#            #anonymous: ~
+#            #http_basic:
+#            #    realm: "Secured Demo Area"
+
+    access_control:
+        - { path: ^/demo/secured/hello/admin/, roles: ROLE_ADMIN }
+       # - { path: ^/tabla, roles: [ROLE_HABANA,ROLE_PROVINCIA] }
+        - { path: ^/documentos, roles: [ROLE_ADMIN]}
+        - { path: ^/usuario, roles: [ROLE_ADMIN]}
+        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

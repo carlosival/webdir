@@ -1,0 +1,49 @@
+{% extends '::base4.html.twig' %}
+
+{% block body %}
+    <h1>Lista de Usuarios</h1>
+    <ul class="pull-right">
+        <li>
+            <a href="{{ path('usuario_new') }}">
+                Crear un nuevo usuario
+            </a>
+        </li>
+    </ul>
+    <table class=" table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Correo</th>
+                <th>Nombre</th>
+                <th>Password</th>
+                <th>Rol</th>
+                <th>Salt</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('usuario_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.correo }}</td>
+                <td>{{ entity.nombre }}</td>
+                <td>{{ entity.password }}</td>
+                <td>{{ entity.rol }}</td>
+                <td>{{ entity.salt }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('usuario_show', { 'id': entity.id }) }}">ver</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('usuario_edit', { 'id': entity.id }) }}">editar</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    {% endblock %}

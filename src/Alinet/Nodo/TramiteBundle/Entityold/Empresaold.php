@@ -1,0 +1,383 @@
+<?php
+
+namespace Alinet\Nodo\TramiteBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Empresa
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Alinet\Nodo\TramiteBundle\Entity\EmpresaRepository")
+ */
+class Empresa
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre_pila", type="string", length=255)
+     */
+    private $nombre_pila;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre_oficial", type="string", length=255 , nullable = true)
+     */
+    private $nombre_oficial;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="direccion", type="string", length=255 , nullable = true)
+     */
+    private $direccion;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="codigo", type="string", length=255 , nullable = true)
+     */
+    private $codigo;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cuentabancaria", type="string", length=255 , nullable = true)
+     */
+    private $cuentabancaria;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Responsables",cascade={"persist"},mappedBy="empresa",orphanRemoval=true)
+     *
+     **/
+    private $responsables;
+
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="Correo",cascade={"persist"},mappedBy="empresa",orphanRemoval=true)
+     *
+     **/
+    private $correos;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Telefono",cascade={"persist"},mappedBy="empresa",orphanRemoval=true)
+     *
+     **/
+    private $telefonos;
+
+
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="estadocuentas", type="boolean" , nullable = true)
+     */
+    private $estadocuentas;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="estadofacturas", type="boolean" , nullable = true)
+     */
+    private $estadofacturas;
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+
+
+    /**
+     * Set nombre_pila
+     *
+     * @param string $nombrePila
+     * @return Empresa
+     */
+    public function setNombrePila($nombrePila)
+    {
+        $this->nombre_pila = $nombrePila;
+
+        return $this;
+    }
+
+    /**
+     * Get nombre_pila
+     *
+     * @return string 
+     */
+    public function getNombrePila()
+    {
+        return $this->nombre_pila;
+    }
+
+    /**
+     * Set nombre_oficial
+     *
+     * @param string $nombreOficial
+     * @return Empresa
+     */
+    public function setNombreOficial($nombreOficial)
+    {
+        $this->nombre_oficial = $nombreOficial;
+
+        return $this;
+    }
+
+    /**
+     * Get nombre_oficial
+     *
+     * @return string 
+     */
+    public function getNombreOficial()
+    {
+        return $this->nombre_oficial;
+    }
+
+    /**
+     * Set direccion
+     *
+     * @param string $direccion
+     * @return Empresa
+     */
+    public function setDireccion($direccion)
+    {
+        $this->direccion = $direccion;
+
+        return $this;
+    }
+
+    /**
+     * Get direccion
+     *
+     * @return string 
+     */
+    public function getDireccion()
+    {
+        return $this->direccion;
+    }
+
+    /**
+     * Set codigo
+     *
+     * @param string $codigo
+     * @return Empresa
+     */
+    public function setCodigo($codigo)
+    {
+        $this->codigo = $codigo;
+
+        return $this;
+    }
+
+    /**
+     * Get codigo
+     *
+     * @return string 
+     */
+    public function getCodigo()
+    {
+        return $this->codigo;
+    }
+
+    /**
+     * Set cuentabancaria
+     *
+     * @param string $cuentabancaria
+     * @return Empresa
+     */
+    public function setCuentabancaria($cuentabancaria)
+    {
+        $this->cuentabancaria = $cuentabancaria;
+
+        return $this;
+    }
+
+    /**
+     * Get cuentabancaria
+     *
+     * @return string 
+     */
+    public function getCuentabancaria()
+    {
+        return $this->cuentabancaria;
+    }
+
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->correos = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->telefonos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add correos
+     *
+     * @param \Alinet\Nodo\TramiteBundle\Entity\Correo $correo
+     * @return Empresa
+     */
+    public function addCorreo(\Alinet\Nodo\TramiteBundle\Entity\Correo $correo)
+    {
+        $correo->setEmpresa($this);
+
+        $this->correos[] = $correo;
+
+        return $this;
+    }
+
+    /**
+     * Remove correos
+     *
+     * @param \Alinet\Nodo\TramiteBundle\Entity\Correo $correos
+     */
+    public function removeCorreo(\Alinet\Nodo\TramiteBundle\Entity\Correo $correos)
+    {
+        $this->correos->removeElement($correos);
+    }
+
+    /**
+     * Get correos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCorreos()
+    {
+        return $this->correos;
+    }
+
+    /**
+     * Add telefonos
+     *
+     * @param \Alinet\Nodo\TramiteBundle\Entity\Telefono $telefono
+     * @return Empresa
+     */
+    public function addTelefono(\Alinet\Nodo\TramiteBundle\Entity\Telefono $telefono)
+    {
+        $telefono->setEmpresa($this);
+        $this->telefonos[] = $telefono;
+
+        return $this;
+    }
+
+    /**
+     * Remove telefonos
+     *
+     * @param \Alinet\Nodo\TramiteBundle\Entity\Telefono $telefonos
+     */
+    public function removeTelefono(\Alinet\Nodo\TramiteBundle\Entity\Telefono $telefonos)
+    {
+        $this->telefonos->removeElement($telefonos);
+    }
+
+    /**
+     * Get telefonos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTelefonos()
+    {
+        return $this->telefonos;
+    }
+
+
+
+    /**
+     * Set estadocuentas
+     *
+     * @param boolean $estadocuentas
+     * @return Empresa
+     */
+    public function setEstadocuentas($estadocuentas)
+    {
+        $this->estadocuentas = $estadocuentas;
+
+        return $this;
+    }
+
+    /**
+     * Get estadocuentas
+     *
+     * @return boolean
+     */
+    public function getEstadocuentas()
+    {
+        return $this->estadocuentas;
+    }
+
+    /**
+     * Set estadofacturas
+     *
+     * @param boolean $estadofacturas
+     * @return Empresa
+     */
+    public function setEstadofacturas($estadofacturas)
+    {
+        $this->estadofacturas = $estadofacturas;
+
+        return $this;
+    }
+
+    /**
+     * Get estadofacturas
+     *
+     * @return boolean
+     */
+    public function getEstadofacturas()
+    {
+        return $this->estadofacturas;
+    }
+
+    /**
+     * Add responsables
+     *
+     * @param \Alinet\Nodo\TramiteBundle\Entity\Responsables $responsable
+     * @return Empresa
+     */
+    public function addResponsable(\Alinet\Nodo\TramiteBundle\Entity\Responsables $responsable)
+    {
+        $responsable->setEmpresa($this);
+        $this->responsables[] = $responsable;
+
+        return $this;
+    }
+
+    /**
+     * Remove responsables
+     *
+     * @param \Alinet\Nodo\TramiteBundle\Entity\Responsables $responsables
+     */
+    public function removeResponsable(\Alinet\Nodo\TramiteBundle\Entity\Responsables $responsables)
+    {
+        $this->responsables->removeElement($responsables);
+    }
+
+    /**
+     * Get responsables
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getResponsables()
+    {
+        return $this->responsables;
+    }
+}

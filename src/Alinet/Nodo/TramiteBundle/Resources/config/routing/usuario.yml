@@ -1,0 +1,30 @@
+usuario:
+    pattern:  /
+    defaults: { _controller: "TramiteBundle:Usuario:index" }
+
+usuario_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "TramiteBundle:Usuario:show" }
+
+usuario_new:
+    pattern:  /new
+    defaults: { _controller: "TramiteBundle:Usuario:new" }
+
+usuario_create:
+    pattern:  /create
+    defaults: { _controller: "TramiteBundle:Usuario:create" }
+    requirements: { _method: post }
+
+usuario_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "TramiteBundle:Usuario:edit" }
+
+usuario_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "TramiteBundle:Usuario:update" }
+    requirements: { _method: post|put }
+
+usuario_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "TramiteBundle:Usuario:delete" }
+    requirements: { _method: post|delete }

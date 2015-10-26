@@ -1,0 +1,30 @@
+telefono:
+    pattern:  /
+    defaults: { _controller: "TramiteBundle:Telefono:index" }
+
+telefono_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "TramiteBundle:Telefono:show" }
+
+telefono_new:
+    pattern:  /new
+    defaults: { _controller: "TramiteBundle:Telefono:new" }
+
+telefono_create:
+    pattern:  /create
+    defaults: { _controller: "TramiteBundle:Telefono:create" }
+    requirements: { _method: post }
+
+telefono_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "TramiteBundle:Telefono:edit" }
+
+telefono_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "TramiteBundle:Telefono:update" }
+    requirements: { _method: post|put }
+
+telefono_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "TramiteBundle:Telefono:delete" }
+    requirements: { _method: post|delete }

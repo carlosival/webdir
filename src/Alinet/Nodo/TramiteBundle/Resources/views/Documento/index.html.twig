@@ -1,0 +1,47 @@
+{% extends '::base4.html.twig' %}
+
+{% block body %}
+    <h1>Listado de Documentos</h1>
+    <ul class="pull-right">
+        <li>
+            <a href="{{ path('documento_new') }}">
+                Nuevo Documento
+            </a>
+        </li>
+    </ul>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                {#<th>Id</th>#}
+                <th>Ruta</th>
+                <th>Creado en </th>
+                <th>Creado por</th>
+                <th>Pertenece a </th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                {#<td><a href="{{ path('documento_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>#}
+                <td><a href="{{asset(entity.getWebPath)}}">{{ entity.getNombre }}</a></td>
+                <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.createdby }}</td>
+                <td>{{ entity.tramite.empresa }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('documento_show', { 'id': entity.id }) }}">mostar</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('documento_edit', { 'id': entity.id }) }}">editar</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    {% endblock %}
